@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Posts from '../components/post/Posts';
 
 
+
 export default function ForumPage() {
     const [topics, setTopics] = useState([])
 
@@ -29,7 +30,7 @@ export default function ForumPage() {
                     </>
                 ))
             }
-
+           
         </div>
     )
 }

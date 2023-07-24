@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-
+import { Link } from 'react-router-dom';
 import CommentPage from "../../pages/CommentPage"
 
 export default function Posts({ topic_id }) {
@@ -24,7 +24,7 @@ export default function Posts({ topic_id }) {
             {
                 posts.map(post => (
                     <div>
-                        <a href="https://github.com/issoe">Post: {post.post_content}</a>
+                        <Link to="/comment">Post: {post.post_content}</Link>
                     </div>
                 ))
             }

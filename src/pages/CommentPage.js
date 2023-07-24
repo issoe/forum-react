@@ -27,6 +27,7 @@ export default function CommentPage({ post_id, post_title }) {
                     <div>{comment.user_id}::: {comment.content}</div>
                 ))
             }
+            <input type='text'></input>
         </>
     )
 }

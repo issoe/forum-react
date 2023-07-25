@@ -3,14 +3,6 @@ import SockJsClient from 'react-stomp';
 
 const SOCKET_URL = 'http://localhost:8083/ws-message';
 
-// const messages = [
-//     {
-//         name: "message sample 1"
-//     }, {
-//         name: "message sample 2"
-//     }
-// ]
-
 export default function ChatPage() {
     const [message, setMessage] = useState(['You server message here.']);
 

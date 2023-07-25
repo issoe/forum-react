@@ -3,26 +3,29 @@ import SockJsClient from 'react-stomp';
 
 const SOCKET_URL = 'http://localhost:8083/ws-message';
 
-const messages = [
-    {
-        name: "message sample 1"
-    }, {
-        name: "message sample 2"
-    }
-
-]
+// const messages = [
+//     {
+//         name: "message sample 1"
+//     }, {
+//         name: "message sample 2"
+//     }
+// ]
 
 export default function ChatPage() {
-    const [message, setMessage] = useState('You server message here.');
+    const [message, setMessage] = useState(['You server message here.']);
 
     let onConnected = () => {
         console.log("Connected!!")
     }
 
+    let onDisconnect = () => {
+        console.log("Disconnected!")
+    }
+
     let onMessageReceived = (msg) => {
-        setMessage(msg.message);
-        messages.push({name: "hello--"})
-        console.log(messages)
+        // setMessage(msg.message);
+        setMessage([...message, msg.message])
+        console.log(message)
     }
 
     return (
@@ -31,18 +34,17 @@ export default function ChatPage() {
                 url={SOCKET_URL}
                 topics={['/topic/message']}
                 onConnect={onConnected}
-                // onDisconnect={console.log("Disconnected!")}
+                onDisconnect={onDisconnect}
                 onMessage={msg => onMessageReceived(msg)}
                 debug={false}
             />
-
-            <div>
-                {
-                    messages.map(message => (
-                        <h4>{message.name}</h4>
-                    ))
-                }
-            </div>
+            {
+                message.map(item => (
+                    // console.log(item)
+                    <h3>{item}</h3>
+                ))
+            }
+            hello
         </div>
     );
 }

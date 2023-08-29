@@ -23,14 +23,19 @@ export default function ForumPage() {
     return (
         <div>
             {
-                topics.map(topic => (
-                    <>
+                topics.map(topic => {
+                    {
+                        console.log(topic)
+                    }
+
+                    return <>
+
                         <h1>Topic: {topic.topic_name}</h1>
-                        <Posts topic_id={topic.topic_id} />
+                        {/* <Posts topic_id={topic.id} /> */}
                     </>
-                ))
+                })
             }
-           
+
         </div>
     )
 }

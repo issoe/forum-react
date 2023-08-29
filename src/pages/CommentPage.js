@@ -1,15 +1,21 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react';
+// import { useLocation } from 'react-router-dom'
 
 import Level1 from '../components/comment/level1/Level1';
 import SubmitComment from '../components/comment/SubmitComment/SubmitComment';
+import { useStoreLocal } from '../store';
 
 
-export default function CommentPage({ post_id, post_title }) {
+export default function CommentPage() {
     const [comments, setComments] = useState([])
+    // const location = useLocation()
+
+    const post_id = useStoreLocal(state => state.post_id);
+    const post_title = useStoreLocal(state => state.post_title);
 
     useEffect(() => {
-        axios.get('http://localhost:8083/api/forum/comments-post-id/3', {
+        axios.get(`http://localhost:8083/api/forum/comments-post-id/${post_id}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
@@ -18,7 +24,7 @@ export default function CommentPage({ post_id, post_title }) {
                 setComments(res.data)
             })
             .catch(error => console.log(error))
-        console.log("Call api to get comments by post id")
+        console.log("Call api to get comments by post id ___")
     }, [])
 
     return (

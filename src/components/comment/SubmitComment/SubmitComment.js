@@ -2,23 +2,19 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function SubmitComment() {
-    const [formData, setFormData] = useState({
-        // post_id: '',
-        // age: '',
-        user_id: '',
-        content: ''
-    });
+    const [formData, setFormData] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const data = {
             post_id: 3,
-            user_id: formData.user_id,
+            user_id: 1,
             comment_level: 1,
-            content: formData.content,
+            content: formData,
             parent_id: '1'
         }
+        console.log(data);
 
         axios.post('http://localhost:8083/api/forum/comment', data)
             .then(response => {
@@ -32,18 +28,19 @@ export default function SubmitComment() {
     };
 
     const handleChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        });
+        // setFormData({
+        //     ...formData,
+        //     [event.target.name]: event.target.value
+        // });
+        setFormData(event.target.value)
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Nhập id của bạn vào đây: 
-                <input type='text' name='user_id' value={formData.user_id} onChange={handleChange}/>
-            </label>
+            {/* <label>
+                Nhập id của bạn vào đây:
+                <input type='text' name='user_id' value={formData.user_id} onChange={handleChange} />
+            </label> */}
             <label>
                 Name:
                 <input type="text" name="content" value={formData.content} onChange={handleChange} />

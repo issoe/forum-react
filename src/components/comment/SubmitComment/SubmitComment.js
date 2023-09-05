@@ -8,10 +8,10 @@ export default function SubmitComment() {
         event.preventDefault();
 
         const data = {
-            post_id: 3,
-            user_id: 1,
+            post_id: formData.post_id,
+            user_id: formData.user_id,
             comment_level: 1,
-            content: formData,
+            content: formData.content,
             parent_id: '1'
         }
         console.log(data);
@@ -28,21 +28,25 @@ export default function SubmitComment() {
     };
 
     const handleChange = (event) => {
-        // setFormData({
-        //     ...formData,
-        //     [event.target.name]: event.target.value
-        // });
-        setFormData(event.target.value)
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
+        // setFormData(event.target.value)
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <label>
-                Nhập id của bạn vào đây:
-                <input type='text' name='user_id' value={formData.user_id} onChange={handleChange} />
-            </label> */}
             <label>
-                Name:
+                user_id:
+                <input type='text' name='user_id' value={formData.user_id} onChange={handleChange} />
+            </label>
+            <label>
+                post_id:
+                <input type='text' name='post_id' value={formData.post_id} onChange={handleChange} />
+            </label>
+            <label>
+                Content:
                 <input type="text" name="content" value={formData.content} onChange={handleChange} />
             </label>
             <button type="submit">Submit</button>

@@ -21,7 +21,7 @@ export default function Posts({ topic_id }) {
 
     useEffect(() => {
         console.log("Topic:", topic_id)
-        axios.get(`http://localhost:8083/api/forum/posts-topic/${topic_id}`, {
+        axios.get(`http://localhost:8083/api/forum/post/1`, {
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
@@ -47,6 +47,7 @@ export default function Posts({ topic_id }) {
                     </div >
                 ))
             }
+            {/* nothing */}
         </>
     )
 }

@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<ChatPage />} />
+      <Route path='/comment' element={<ChatPage />} />
       <Route path='/forum' element={<ForumPage />} />
-      <Route path='/comment' element={<CommentPage />} />
+      <Route path='/' element={<CommentPage />} />
     </ Routes>
   </BrowserRouter>
 );

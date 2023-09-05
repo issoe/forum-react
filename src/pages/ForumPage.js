@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react';
 import Posts from '../components/post/Posts';
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,14 +25,16 @@ export default function ForumPage() {
         <div>
             {
                 topics.map(topic => {
-                    {
-                        console.log(topic)
-                    }
+                    // console.log(topic.posts)
+
 
                     return <>
-
-                        <h1>Topic: {topic.topic_name}</h1>
-                        {/* <Posts topic_id={topic.id} /> */}
+                        <h1>{topic.topicName}</h1>
+                        {topic.posts.map((post, index) => (
+                            <p key={index}>
+                                <Link to={`/comment?post_id=${post.post_id}`}>{post.title}</Link>
+                            </p>
+                        ))}
                     </>
                 })
             }

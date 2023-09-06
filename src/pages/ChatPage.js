@@ -32,7 +32,8 @@ export default function ChatPage() {
         if (msg.postId == topicId) {
             setComments([...comments, {
                 comment_level: msg.comment_level,
-                username: msg.username,
+                firstName: msg.firstName,
+                lastName: msg.lastName,
                 content: msg.content,
                 comment_date: msg.comment_date
             }]);
@@ -46,7 +47,7 @@ export default function ChatPage() {
             }
         })
             .then(res => {
-                console.log("Resst data: ", res.data)
+                // console.log("Resst data: ", res.data)
                 setComments(res.data.comments)
             })
             .catch(error => console.log(error))
@@ -76,7 +77,7 @@ export default function ChatPage() {
                         // .filter(comment => comment.post_id == {topicId})
                         .map(comment => (
 
-                            <Level1 level={comment.comment_level} name={comment.username} comment={comment.content} />
+                            <Level1 level={comment.comment_level} firstName={comment.firstName} lastName={comment.lastName} comment={comment.content} />
                         ))
                 }
             </div> : <>Có 1 sự thiếu soát topic_id ở đây rồi</>

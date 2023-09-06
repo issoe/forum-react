@@ -23,15 +23,28 @@ export default function ForumPage() {
     return (
         <div>
             <button>Create new post</button>
+            
             {
                 topics.map(topic => {
                     return <>
                         <h1>{topic.topicName}</h1>
                         {topic.posts.map((post, index) => (
-                            
+
                             <p key={index}>
                                 {/* Post_id: ${post} */}
                                 <Link to={`/comment?topic_id=${post.postId}`}>{post.title}</Link>
+                                <span style={{
+                                    border: "1px solid black",
+                                    padding: "5px",
+                                }}>Created on {post.createdOn}</span>
+                                <span style={{
+                                    border: "1px solid black",
+                                    padding: "5px",
+                                }}>By {post.firstname}, {post.lastName}</span>
+                                <span style={{
+                                    border: "1px solid black",
+                                    padding: "5px",
+                                }}>{post.numberOfComment} comments</span>
                                 <button>Delete</button>
                                 <button>Edit</button>
                             </p>

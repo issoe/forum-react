@@ -18,21 +18,22 @@ export default function ForumPage() {
                 setTopics(res.data)
             })
             .catch(error => console.log(error))
-        console.log("test")
     }, [])
 
     return (
         <div>
+            <button>Create new post</button>
             {
                 topics.map(topic => {
-                    // console.log(topic.posts)
-
-
                     return <>
                         <h1>{topic.topicName}</h1>
                         {topic.posts.map((post, index) => (
+                            
                             <p key={index}>
-                                <Link to={`/comment?post_id=${post.post_id}`}>{post.title}</Link>
+                                {/* Post_id: ${post} */}
+                                <Link to={`/comment?topic_id=${post.postId}`}>{post.title}</Link>
+                                <button>Delete</button>
+                                <button>Edit</button>
                             </p>
                         ))}
                     </>

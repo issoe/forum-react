@@ -1,3 +1,7 @@
+/*
+    File này có 1 bug nghiêm trọng, thay vì phải là postId, nhưng cách đặt biến là postId
+*/ 
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Level1 from '../components/comment/level1/Level1';
@@ -25,18 +29,14 @@ export default function ChatPage() {
     }
 
     let onMessageReceived = (msg) => {
-        // setMessage(msg.message);
-        // setMessage([...message, msg.content])
-        // console.log(message)
-        console.log("Msg", msg)
-
-        setComments([...comments, {
-            comment_level: msg.comment_level,
-            username: msg.username,
-            content: msg.content,
-            comment_date: msg.comment_date
-        }])
-        console.log(comments)
+        if (msg.postId == topicId) {
+            setComments([...comments, {
+                comment_level: msg.comment_level,
+                username: msg.username,
+                content: msg.content,
+                comment_date: msg.comment_date
+            }]);
+        }
     }
 
     useEffect(() => {
@@ -46,11 +46,11 @@ export default function ChatPage() {
             }
         })
             .then(res => {
-                console.log(res.data)
+                console.log("Resst data: ", res.data)
                 setComments(res.data.comments)
             })
             .catch(error => console.log(error))
-        console.log("Call api to get comments by post id_=")
+        // console.log("Call api to get comments by post id_=")
     }, [])
 
     return <>
@@ -70,19 +70,19 @@ export default function ChatPage() {
                     <h3>{item}</h3>
                 ))
             } */}
-                {console.log("List comment", comments)}
                 {
 
                     comments
-                        .filter(comment => comment.post_id == {topicId})
+                        // .filter(comment => comment.post_id == {topicId})
                         .map(comment => (
-                        <Level1 level={comment.comment_level} name={comment.username} comment={comment.content} />
-                    ))
+
+                            <Level1 level={comment.comment_level} name={comment.username} comment={comment.content} />
+                        ))
                 }
             </div> : <>Có 1 sự thiếu soát topic_id ở đây rồi</>
         }
         <SubmitComment />
     </>
-    // return <p>Topic ID: {topicId}</p>;
-
 }
+
+
